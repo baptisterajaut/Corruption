@@ -29,7 +29,7 @@ public class Assasinat extends Event {
     @Override
     protected void onArriveEffect() throws Defaite {
         System.out.println("On vous tire dessus!");
-        if (new Random().nextInt(1)==0){
+        if (new Random().nextInt(2)==0){
             System.out.println("Vous mourrez sur le coup.");
             throw new Defaite();
         }

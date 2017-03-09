@@ -36,7 +36,7 @@ public class CargoRenegat extends Character {
     @Override
     protected void onArriveEffect() throws Defaite {
         for(Card c : partie.getPaquet().getListe()){
-            if(c instanceof CaptiaineJackTamo) {
+            if(c instanceof CapitaineJackTamo) {
                 partie.getPaquet().removeCarte(c);
                 c.onArrive();
                 partie.getCardsToAdd().getListe().add(c);

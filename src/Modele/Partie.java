@@ -34,7 +34,7 @@ public class Partie {
         this.credits = 6;
         this.tours = tours;
         this.cardsToAdd = new ListeCarte();
-        paquet = PaquetFactory.createDeckFromFile(this,"basic.deck");
+        paquet = PaquetFactory.createDeckFromFile(this,"baptiste.deck");
         paquet.melanger();
     }
 
@@ -57,7 +57,7 @@ public class Partie {
                 StringBuilder sb = new StringBuilder();
                 sb.append("\n-------Nouveau Tour--------\n");
                 sb.append("Vous avez ").append(appreciation).append(" points d'appreciation ( ").append(appreciationMod).append(" par tour )\n");
-                sb.append("Vous avez ").append(infl).append(" points d'influence (").append(influence).append(" - ").append(influenceMod).append(")\n");
+                sb.append("Vous avez ").append(infl).append(" points d'influence (").append(influence).append(" : ").append(influenceMod).append(")\n");
                 sb.append("Vous avez ").append(credits).append(" credits (").append(creditsMod).append(" par tour)\n");
                 if (activeCards.getListe().size() != 0) {
                     sb.append("Vous avez sur le terrain :\n");
@@ -166,12 +166,17 @@ public class Partie {
                             if (personnages.getListe().size() == 0 || credits<0)
                                 break;
                             while (choix < 0 || choix > personnages.getListe().size()) {
-                                System.out.println("Editez vos personnages : choisissez un peronnage a supprimer ou entrez 0 pour aucun");
-                                for (int i = 0; i < personnages.getListe().size(); i++) {
-                                    System.out.println((i + 1) + " : " + personnages.getListe().get(i).describe(true));
+                                try {
+                                    System.out.println("Editez vos personnages : choisissez un peronnage a supprimer ou entrez 0 pour aucun");
+                                    for (int i = 0; i < personnages.getListe().size(); i++) {
+                                        System.out.println((i + 1) + " : " + personnages.getListe().get(i).describe(true));
+                                    }
+                                    Scanner s = new Scanner(System.in);
+                                    choix = s.nextInt();
                                 }
-                                Scanner s = new Scanner(System.in);
-                                choix = s.nextInt();
+                                catch (Exception ignored){
+
+                                }
                             }
 
                             if (choix != 0) {

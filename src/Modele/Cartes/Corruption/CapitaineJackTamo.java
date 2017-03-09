@@ -10,8 +10,8 @@ import java.util.ArrayList;
 /**
  * Created by bapti on 09/03/2017.
  */
-public class CaptiaineJackTamo extends Character {
-    public CaptiaineJackTamo(Partie partie) {
+public class CapitaineJackTamo extends Character {
+    public CapitaineJackTamo(Partie partie) {
         super(partie);
     }
 
