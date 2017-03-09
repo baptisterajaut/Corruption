@@ -6,8 +6,8 @@ import Modele.TypeCarte;
 /**
  * Created by bapti on 08/03/2017.
  */
-public abstract class Batiment extends Carte {
-    public Batiment(Partie partie) {
+public abstract class Event extends Card {
+    public Event(Partie partie) {
         super(partie);
     }
 
@@ -17,13 +17,22 @@ public abstract class Batiment extends Carte {
     }
 
     @Override
+    protected int declareAppreciationMalus() {
+        return 0;
+    }
+
+    @Override
     TypeCarte declareType() {
-        return TypeCarte.Batiment;
+        return TypeCarte.Evennement;
+    }
+
+    @Override
+    protected void onTimeEffect() {
+
     }
 
     @Override
     protected void onLeaveEffect() {
 
     }
-
 }

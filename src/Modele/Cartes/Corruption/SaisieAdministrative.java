@@ -1,18 +1,20 @@
-package Modele.Cartes;
+package Modele.Cartes.Corruption;
 
-import Modele.Cartes.Abstacts.Carte;
-import Modele.Cartes.Abstacts.Evennement;
+import Modele.Cartes.Abstacts.Event;
 import Modele.Partie;
-import Modele.TypeCarte;
 
 /**
  * Created by bapti on 08/03/2017.
  */
-public class Saisie_administrative extends Evennement {
-    public Saisie_administrative(Partie partie) {
+public class SaisieAdministrative extends Event {
+    public SaisieAdministrative(Partie partie) {
         super(partie);
     }
 
+    @Override
+    protected String declareName() {
+        return "Saisie Administrative";
+    }
 
 
     @Override

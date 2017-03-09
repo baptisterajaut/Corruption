@@ -1,14 +1,19 @@
-package Modele.Cartes;
+package Modele.Cartes.Corruption;
 
-import Modele.Cartes.Abstacts.Personnage;
+import Modele.Cartes.Abstacts.Character;
 import Modele.Partie;
 
 /**
  * Created by bapti on 08/03/2017.
  */
-public class Chef_de_gang extends Personnage {
-    public Chef_de_gang(Partie partie) {
+public class ChefDeGang extends Character {
+    public ChefDeGang(Partie partie) {
         super(partie);
+    }
+
+    @Override
+    protected String declareName() {
+        return "Chef de gang";
     }
 
     @Override

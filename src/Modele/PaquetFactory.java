@@ -1,9 +1,6 @@
 package Modele;
 
-import Modele.Cartes.Assasinat;
-import Modele.Cartes.Bureau_de_propagande;
-import Modele.Cartes.Chef_de_gang;
-import Modele.Cartes.Saisie_administrative;
+import Modele.Cartes.Corruption.*;
 
 /**
  * Created by bapti on 08/03/2017.
@@ -11,12 +8,18 @@ import Modele.Cartes.Saisie_administrative;
 public class PaquetFactory {
     public static ListeCarte testDeck(Partie p){
         ListeCarte ret=new ListeCarte();
-        ret.getListe().add(new Chef_de_gang(p));
-        ret.getListe().add(new Chef_de_gang(p));
-        ret.getListe().add(new Bureau_de_propagande(p));
-        ret.getListe().add(new Saisie_administrative(p));
-        ret.getListe().add(new Saisie_administrative(p));
-        ret.getListe().add(new Assasinat(p));
+        ret.getListe().add(new ChefDeGang(p));
+        ret.getListe().add(new ChefDeGang(p));
+        ret.getListe().add(new BureauDePropagande(p));
+        ret.getListe().add(new BureauDePropagande(p));
+        ret.getListe().add(new BureauDePropagande(p));
+        ret.getListe().add(new BureauDePropagande(p));
+        ret.getListe().add(new BureauDePropagande(p));
+        //ret.getListe().add(new Assasinat(p));
+        ret.getListe().add(new CaptiaineJackTamo(p));
+        ret.getListe().add(new CargoRenegat(p));
+        ret.getListe().add(new CargoRenegat(p));
+        ret.getListe().add(new CargoRenegat(p));
         return ret;
     }
 }

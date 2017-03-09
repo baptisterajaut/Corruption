@@ -1,22 +1,25 @@
-package Modele.Cartes;
+package Modele.Cartes.Corruption;
 
-import Modele.Cartes.Abstacts.Carte;
-import Modele.Cartes.Abstacts.Evennement;
+import Modele.Cartes.Abstacts.Event;
 import Modele.Defaite;
 import Modele.Partie;
-import Modele.TypeCarte;
 
 /**
  * Created by bapti on 08/03/2017.
  */
-public class Assasinat extends Evennement {
+public class Assasinat extends Event {
     public Assasinat(Partie partie) {
         super(partie);
     }
 
     @Override
-    protected String declareDescription() {
+    protected String declareName() {
         return "Assasinat";
+    }
+
+    @Override
+    protected String declareDescription() {
+        return "Assasinat une chance sur deux";
     }
 
 

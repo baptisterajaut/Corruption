@@ -1,16 +1,20 @@
-package Modele.Cartes;
+package Modele.Cartes.Corruption;
 
-import Modele.Cartes.Abstacts.Batiment;
+import Modele.Cartes.Abstacts.Building;
 import Modele.Defaite;
 import Modele.Partie;
-import Modele.TypeCarte;
 
 /**
  * Created by bapti on 08/03/2017.
  */
-public class Bureau_de_propagande extends Batiment {
-    public Bureau_de_propagande(Partie partie) {
+public class BureauDePropagande extends Building {
+    public BureauDePropagande(Partie partie) {
         super(partie);
+    }
+
+    @Override
+    protected String declareName() {
+        return "Bureau de propagande";
     }
 
     @Override

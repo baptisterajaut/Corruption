@@ -6,8 +6,8 @@ import Modele.TypeCarte;
 /**
  * Created by bapti on 08/03/2017.
  */
-public abstract class Personnage extends Carte {
-    public Personnage(Partie partie) {
+public abstract class Character extends Card {
+    public Character(Partie partie) {
         super(partie);
     }
 

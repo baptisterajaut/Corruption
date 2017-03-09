@@ -7,23 +7,24 @@ import Modele.TypeCarte;
 /**
  * Created by bapti on 08/03/2017.
  */
-public abstract class Carte {
+public abstract class Card {
     private TypeCarte type;
     protected Partie partie;
     private boolean disable;
     private int tourMod = 0;
     private int tour;
-    private String nom = this.getClass().toString();
+    private String nom;
     private String description;
     private int appreciaitionMalus;
 
-    public Carte(Partie partie) {
+    public Card(Partie partie) {
         this.partie = partie;
         this.disable = false;
         this.type = declareType();
         this.tour = declareTurnTime();
         this.description = declareDescription();
         this.appreciaitionMalus = declareAppreciationMalus();
+        this.nom=declareName();
 
     }
 
@@ -38,13 +39,17 @@ public abstract class Carte {
     }
 
     public void onArrive() throws Defaite {
-        if (!disable)
+        if (!disable) {
+            System.out.println(nom+" arrive sur le terrain");
             onArriveEffect();
+        }
     }
 
     public int getTourRemaining() {
         return tour+tourMod;
     }
+
+    protected abstract String declareName();
 
     protected abstract int declareTurnTime();
 
