@@ -26,11 +26,12 @@ public abstract class Card {
         this.description = declareDescription();
         this.appreciaitionMalus = declareAppreciationMalus();
         this.nom=declareName();
-        this.declareIsInsurmontable();
+        insurmontable=this.declareIsInsurmontable();
 
     }
 
     public void applyTour() {
+        enable();
         if (type == TypeCarte.Personnage) {
             tourMod--;
             if (getTourRemaining() <= 0) {
@@ -112,8 +113,10 @@ public abstract class Card {
         sb.append(nom);
         if (longdesc) {
             sb.append(" : ").append(type.name());
-            if (type == TypeCarte.Personnage)
+            if (type == TypeCarte.Personnage) {
                 sb.append(" : ").append(tour).append(" tours");
+                sb.append("( ").append(getTourRemaining()).append(" tours restants ) ");
+            }
             if (description.length() > 0)
                 sb.append(" - ").append(description);
             if (appreciaitionMalus > 0)

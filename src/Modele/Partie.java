@@ -6,6 +6,7 @@ import Modele.Cartes.Abstacts.Event;
 import Modele.Cartes.Abstacts.Character;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Created by bapti on 08/03/2017.
@@ -40,10 +41,12 @@ public class Partie {
 
     private void run() {
         try {
+            System.out.println("Bienvenue... vous avez "+tours+" tours a tenir... bonne chance...");
             for (int ktours = 0; ktours < tours; ktours++) {
                 appreciationMalus = 0;
                 creditsMod = 0;
                 influenceMod = 0;
+                batimentsEnabled=true;
                 for (Card c : activeCards.getListe()) {
                     c.onTime();
                 }
@@ -51,23 +54,22 @@ public class Partie {
                 int infl = influence + influenceMod;
 
                 checkDefaite();
-                if (activeCards.getListe().size() != 0) {
+
                     StringBuilder sb = new StringBuilder();
                     sb.append("\n-------Nouveau Tour--------\n");
                     sb.append("Vous avez ").append(apr).append(" points d'appreciation (").append(appreciation).append(" - ").append(appreciationMalus).append(")\n");
                     sb.append("Vous avez ").append(infl).append(" points d'influence (").append(influence).append(" - ").append(influenceMod).append(")\n");
                     sb.append("Vous avez ").append(credits).append(" credits (").append(creditsMod).append(" par tour)\n");
+                if (activeCards.getListe().size() != 0) {
                     sb.append("Vous avez sur le terrain :\n");
                     for (Card c : activeCards.getListe()) {
-                        sb.append(c.describe(true));
-                        if (c instanceof Character)
-                            sb.append("( ").append(c.getTourRemaining()).append(" tours restants)");
-                        sb.append("\n");
+                        sb.append(c.describe(true)).append("\n");
                     }
                     sb.append("-----------\n");
-                    System.out.print(sb.toString());
+
 
                 }
+                System.out.print(sb.toString());
                 ListeCarte choisies = new ListeCarte();
                 ListeCarte piochees = new ListeCarte();
                 piochees.getListe().add(paquet.draw());
@@ -80,13 +82,22 @@ public class Partie {
                     }
                 }
                 if (choisies.getListe().size() == 0) {
-                    System.out.println("Choisisez une carte :");
-                    for (int i = 0; i < piochees.getListe().size(); i++)
-                        System.out.println((i + 1) + " : " + piochees.getListe().get(i).describe(true));
-                    int choix = 1;
+
+
+                    int choix = 0;
+                    while (choix > piochees.getListe().size() || choix < 1) {
+                        try {
+                            System.out.println("Choisisez une carte :");
+                            for (int i = 0; i < piochees.getListe().size(); i++)
+                                System.out.println((i + 1) + " : " + piochees.getListe().get(i).describe(true));
+                            Scanner s = new Scanner(System.in);
+                            choix = s.nextInt();
+                        } catch (Exception ignored) {
+
+                        }
+                    }
                     choisies.getListe().add(piochees.getListe().remove(choix - 1));
-                }
-                else {
+                } else {
                     System.out.println("Insurmonatble !!");
                     for (Card c : choisies.getListe())
                         System.out.println(c.describe(true));
@@ -108,10 +119,20 @@ public class Partie {
                             batiments.getListe().add(c);
                     }
                     if (batiments.getListe().size() > 0) {
-                        System.out.println("Editez vos batiments : choisissez un batiment a desactiver ou entrez 0 pour acun");
-                        for (int i = 0; i < batiments.getListe().size(); i++) {
-                            System.out.println((i + 1) + " : " + batiments.getListe().get(i).describe(true));
+                        int choix = -1;
+                        while (choix < 0 || choix > batiments.getListe().size()) {
+                            System.out.println("Editez vos batiments : choisissez un batiment a desactiver ou entrez 0 pour acun");
+                            for (int i = 0; i < batiments.getListe().size(); i++) {
+                                System.out.println((i + 1) + " : " + batiments.getListe().get(i).describe(true));
+                            }
+                            Scanner s = new Scanner(System.in);
+                            choix = s.nextInt();
                         }
+                        if (choix != 0) {
+                            editPermanentCredits(-2);
+                            batiments.getListe().get(choix - 1).disable();
+                        }
+
 
                     }
                 } else
@@ -122,17 +143,21 @@ public class Partie {
                         activeCards.getListe().add(c);
                 }
                 cardsToAdd = new ListeCarte();
-                batimentsEnabled = true;
             }
             System.out.println("Vous avez survecu");
         } catch (Defaite d) {
             System.out.println("Vous avez perdu!");
         }
     }
+    private void decrireTerrain(){
 
+    }
     private void checkDefaite() throws Defaite {
         if (appreciation - appreciationMalus <= 0) {
-            System.out.println("Le peuple se rebelle !");
+            System.out.println("Le peuple se rebelle ! : "+getTotalAppreciation());
+            for (Card c : activeCards.getListe()) {
+                System.out.println(c.describe(true));
+            }
             throw new Defaite();
         }
     }
@@ -163,7 +188,7 @@ public class Partie {
     }
 
     public void editPermanentAppreciation(int appreciation) {
-        this.appreciation = appreciation;
+        this.appreciation += appreciation;
     }
 
     public ListeCarte getActiveCards() {
@@ -181,11 +206,13 @@ public class Partie {
     public int getTotalCredits() {
         return credits;
     }
-    public int getTotalInfluence(){
-        return influence+influenceMod;
+
+    public int getTotalInfluence() {
+        return influence + influenceMod;
     }
-    public int getTotalAppreciation(){
-        return appreciation-appreciationMalus;
+
+    public int getTotalAppreciation() {
+        return appreciation - appreciationMalus;
     }
 
     public static void main(String[] args) {

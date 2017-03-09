@@ -25,7 +25,9 @@ public class Taxe extends Event {
 
     @Override
     protected void onArriveEffect() throws Defaite {
+        System.out.println("Salutations... vous nous devez 5 credits ( vous en avez "+partie.getTotalCredits()+" )");
         if(partie.getTotalCredits()>=5){
+            System.out.println("Bon vous pouvez payer... Vous avez de la chance.");
             partie.editPermanentCredits(-5);
         }
         else{
