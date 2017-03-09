@@ -42,10 +42,8 @@ public abstract class Card {
     }
 
     public void onArrive() throws Defaite {
-        if (!disable) {
             System.out.println(nom+" arrive sur le terrain");
             onArriveEffect();
-        }
     }
 
     public int getTourRemaining() {
@@ -68,9 +66,10 @@ public abstract class Card {
 
     public void onTime() {
         if (!disable) {
-            partie.editAppreciationMod(appreciaitionMalus);
-            onTimeEffect();
+            partie.editAppreciationMod(-appreciaitionMalus);
+
         }
+        onTimeEffect();
     }
 
     protected abstract void onTimeEffect();
@@ -84,7 +83,6 @@ public abstract class Card {
     }
 
     public void onLeave() {
-        if (!disable)
             onLeaveEffect();
     }
 
@@ -94,6 +92,10 @@ public abstract class Card {
 
     protected String getNom() {
         return this.nom;
+    }
+
+    public boolean isDisable() {
+        return disable;
     }
 
     public TypeCarte getType() {
@@ -118,9 +120,9 @@ public abstract class Card {
                 sb.append("( ").append(getTourRemaining()).append(" tours restants ) ");
             }
             if (description.length() > 0)
-                sb.append(" - ").append(description);
+                sb.append(" : ").append(description);
             if (appreciaitionMalus > 0)
-                sb.append(" - ").append("-").append(appreciaitionMalus).append(" influence");
+                sb.append(", - ").append(appreciaitionMalus).append(" influence");
         }
         return sb.toString();
     }

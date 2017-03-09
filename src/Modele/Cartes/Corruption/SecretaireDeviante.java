@@ -29,7 +29,7 @@ public class SecretaireDeviante extends Character{
 
     @Override
     protected String declareDescription() {
-        return null;
+        return "-1 point d'influence";
     }
 
     @Override

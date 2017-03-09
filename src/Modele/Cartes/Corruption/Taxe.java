@@ -25,14 +25,14 @@ public class Taxe extends Event {
 
     @Override
     protected void onArriveEffect() throws Defaite {
-        System.out.println("Salutations... vous nous devez 5 credits ( vous en avez "+partie.getTotalCredits()+" )");
-        if(partie.getTotalCredits()>=5){
+        System.out.println("Salutations... vous nous devez 5 credits ( vous en avez " + partie.getTotalCredits() + " )");
+        if (partie.getTotalCredits() >= 5) {
             System.out.println("Bon vous pouvez payer... Vous avez de la chance.");
             partie.editPermanentCredits(-5);
-        }
-        else{
+        } else {
             System.out.println("Hmmm? Pas assez d'argent a ce que je vois... Jolis meubles...");
-            partie.editPermanentCredits(-partie.getTotalCredits());
+            if (partie.getTotalCredits() > 0)
+                partie.editPermanentCredits(-partie.getTotalCredits());
             Card next = partie.getPaquet().draw();
             next.onArrive();
             partie.getCardsToAdd().getListe().add(next);
