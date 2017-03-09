@@ -34,12 +34,12 @@ public class Partie {
         this.credits = 6;
         this.tours = tours;
         this.cardsToAdd = new ListeCarte();
-        paquet = PaquetFactory.testDeck(this);
+        paquet = PaquetFactory.createDeckFromFile(this,"basic.deck");
         paquet.melanger();
     }
 
 
-    private void run() {
+    public void run() {
         try {
             System.out.println("Bienvenue... vous avez " + tours + " tours a tenir... bonne chance...");
             for (int ktours = 0; ktours < tours; ktours++) {
@@ -226,7 +226,7 @@ public class Partie {
             }
 
 
-        if(credits<(-10)){
+        if(credits<=(-10)){
             System.out.println("Vous etes ruine!");
             throw new Defaite();
         }
