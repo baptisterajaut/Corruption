@@ -7,14 +7,14 @@ import Modele.Partie;
 /**
  * Created by bapti on 09/03/2017.
  */
-public class SecretaireDeviante extends Character{
-    public SecretaireDeviante(Partie partie) {
+public class DetourneurDeFonds extends Character {
+    public DetourneurDeFonds(Partie partie) {
         super(partie);
     }
 
     @Override
     protected String declareName() {
-        return "Secretaire deviante";
+        return "Detourneur de fonds";
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SecretaireDeviante extends Character{
 
     @Override
     protected String declareDescription() {
-        return null;
+        return "-4 de credits par tour";
     }
 
     @Override
@@ -39,16 +39,17 @@ public class SecretaireDeviante extends Character{
 
     @Override
     protected void onTimeEffect() {
-        partie.editInfluenceMod(-1);
+        partie.editCreditsMod(-4);
+
     }
 
     @Override
     protected void onLeaveEffect() {
 
     }
+
     @Override
     protected boolean declareIsInsurmontable() {
         return false;
     }
-
 }

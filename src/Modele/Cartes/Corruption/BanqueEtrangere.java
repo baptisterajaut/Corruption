@@ -1,35 +1,45 @@
 package Modele.Cartes.Corruption;
 
-import Modele.Cartes.Abstacts.Event;
+import Modele.Cartes.Abstacts.Building;
 import Modele.Defaite;
 import Modele.Partie;
 
 /**
  * Created by bapti on 09/03/2017.
  */
-public class ShowPopulaire extends Event {
-    public ShowPopulaire(Partie partie) {
+public class BanqueEtrangere extends Building {
+    public BanqueEtrangere(Partie partie) {
         super(partie);
     }
 
     @Override
     protected String declareName() {
-        return "Show populaire";
+        return "Banque Etrangere";
+    }
+
+    @Override
+    protected int declareAppreciationMalus() {
+        return 2;
     }
 
     @Override
     protected String declareDescription() {
-        return "Perdez 3 points d'appreciation";
+        return "-1 de crédit par tour";
     }
 
     @Override
     protected void onArriveEffect() throws Defaite {
-        partie.editPermanentAppreciation(-3);
 
     }
+
+    @Override
+    protected void onTimeEffect() {
+        partie.editCreditsMod(-1);
+
+    }
+
     @Override
     protected boolean declareIsInsurmontable() {
         return false;
     }
-
 }

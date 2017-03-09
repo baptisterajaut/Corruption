@@ -59,4 +59,9 @@ public class CaptiaineJackTamo extends Character {
     protected void onLeaveEffect() {
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 }

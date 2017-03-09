@@ -8,7 +8,7 @@ import java.util.Collections;
 /**
  * Created by bapti on 08/03/2017.
  */
-public class ListeCarte {
+public class ListeCarte implements Cloneable{
     private ArrayList<Card> liste;
 
     public ListeCarte() {
@@ -26,5 +26,10 @@ public class ListeCarte {
     }
     public Card removeCarte(Card c){
         return liste.remove(liste.indexOf(c));
+    }
+    public ListeCarte clone(){
+     ListeCarte ret=new ListeCarte();
+        ret.liste=new ArrayList<>(this.liste);
+        return ret;
     }
 }

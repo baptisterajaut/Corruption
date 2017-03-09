@@ -30,4 +30,9 @@ public class MauvaisContrat extends Event {
         partie.editPermanentAppreciation(-2);
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 }

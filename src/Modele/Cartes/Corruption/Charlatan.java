@@ -7,19 +7,19 @@ import Modele.Partie;
 /**
  * Created by bapti on 09/03/2017.
  */
-public class SecretaireDeviante extends Character{
-    public SecretaireDeviante(Partie partie) {
+public class Charlatan extends Character {
+    public Charlatan(Partie partie) {
         super(partie);
     }
 
     @Override
     protected String declareName() {
-        return "Secretaire deviante";
+        return "Charlatan";
     }
 
     @Override
     protected int declareTurnTime() {
-        return 3;
+        return 1;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class SecretaireDeviante extends Character{
 
     @Override
     protected String declareDescription() {
-        return null;
+        return "- 2 points d’influence";
     }
 
     @Override
@@ -39,16 +39,17 @@ public class SecretaireDeviante extends Character{
 
     @Override
     protected void onTimeEffect() {
-        partie.editInfluenceMod(-1);
+        partie.editInfluenceMod(-2);
+
     }
 
     @Override
     protected void onLeaveEffect() {
 
     }
+
     @Override
     protected boolean declareIsInsurmontable() {
         return false;
     }
-
 }

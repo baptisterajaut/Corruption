@@ -27,5 +27,10 @@ public class SaisieAdministrative extends Event {
         partie.editPermanentInfluence(-1);
     }
 
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 
 }

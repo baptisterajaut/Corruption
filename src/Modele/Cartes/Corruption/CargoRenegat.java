@@ -55,4 +55,9 @@ public class CargoRenegat extends Character {
     protected void onLeaveEffect() {
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 }

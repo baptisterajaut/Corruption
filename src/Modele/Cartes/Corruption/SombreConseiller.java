@@ -48,4 +48,9 @@ public class SombreConseiller extends Character {
     protected void onLeaveEffect() {
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 }

@@ -1,45 +1,52 @@
 package Modele.Cartes.Corruption;
 
 import Modele.Cartes.Abstacts.Building;
+import Modele.Cartes.Abstacts.Card;
 import Modele.Defaite;
 import Modele.Partie;
 
 /**
  * Created by bapti on 09/03/2017.
  */
-public class StripClub extends Building {
-    public StripClub(Partie partie) {
+public class PlanqueDeMafieux extends Building {
+    public PlanqueDeMafieux(Partie partie) {
         super(partie);
     }
 
     @Override
     protected String declareName() {
-        return "Strip-Club";
+        return "Planque de mafieux";
     }
 
     @Override
     protected int declareAppreciationMalus() {
-        return 8;
+        return 3;
     }
 
     @Override
     protected String declareDescription() {
-        return "+2 credits par tour";
+        return "Si il y a un chef de gang dans le paquet : Le déclenche.";
     }
 
     @Override
     protected void onArriveEffect() throws Defaite {
-
+        for(Card c : partie.getPaquet().getListe()){
+            if(c instanceof ChefDeGang){
+                partie.getPaquet().removeCarte(c);
+                c.onArrive();
+                partie.getCardsToAdd().getListe().add(c);
+                return;
+            }
+        }
     }
 
     @Override
     protected void onTimeEffect() {
-        partie.editCreditsMod(2);
 
     }
+
     @Override
     protected boolean declareIsInsurmontable() {
         return false;
     }
-
 }

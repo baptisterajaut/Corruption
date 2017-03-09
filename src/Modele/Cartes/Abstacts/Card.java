@@ -11,6 +11,7 @@ public abstract class Card {
     private TypeCarte type;
     protected Partie partie;
     private boolean disable;
+    private boolean insurmontable;
     private int tourMod = 0;
     private int tour;
     private String nom;
@@ -25,6 +26,7 @@ public abstract class Card {
         this.description = declareDescription();
         this.appreciaitionMalus = declareAppreciationMalus();
         this.nom=declareName();
+        this.declareIsInsurmontable();
 
     }
 
@@ -33,7 +35,7 @@ public abstract class Card {
             tourMod--;
             if (getTourRemaining() <= 0) {
                 onLeave();
-                partie.getActiveCards().getListe().remove(partie.getActiveCards().getListe().indexOf(this));
+                partie.getActiveCards().removeCarte(this);
             }
         }
     }
@@ -48,6 +50,8 @@ public abstract class Card {
     public int getTourRemaining() {
         return tour+tourMod;
     }
+
+
 
     protected abstract String declareName();
 
@@ -85,7 +89,9 @@ public abstract class Card {
 
     protected abstract void onLeaveEffect();
 
-    public String getNom() {
+    protected abstract boolean declareIsInsurmontable();
+
+    protected String getNom() {
         return this.nom;
     }
 
@@ -95,6 +101,10 @@ public abstract class Card {
 
     public String descibe() {
         return describe(false);
+    }
+
+    public boolean isInsurmontable() {
+        return insurmontable;
     }
 
     public String describe(boolean longdesc) {

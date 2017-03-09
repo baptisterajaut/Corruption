@@ -48,4 +48,9 @@ public class BarSponsorise extends Building {
     protected void onTimeEffect() {
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 }

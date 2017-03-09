@@ -12,6 +12,7 @@ public class Assasinat extends Event {
         super(partie);
     }
 
+
     @Override
     protected String declareName() {
         return "Assasinat";
@@ -28,6 +29,11 @@ public class Assasinat extends Event {
         throw new Defaite();
 
     }
+    @Override
+    protected boolean declareIsInsurmontable() {
+        return false;
+    }
+
 
 
 }
