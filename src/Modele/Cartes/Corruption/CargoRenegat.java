@@ -46,7 +46,7 @@ public class CargoRenegat extends Character {
     }
 
     @Override
-    protected void onTimeEffect() {
+    protected void onTimeEffect() throws Defaite {
         partie.editCreditsMod(-1);
 
     }

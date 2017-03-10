@@ -38,7 +38,7 @@ public class SombreConseiller extends Character {
     }
 
     @Override
-    protected void onTimeEffect() {
+    protected void onTimeEffect() throws Defaite {
         partie.editInfluenceMod(1);
         partie.editCreditsMod(-3);
 

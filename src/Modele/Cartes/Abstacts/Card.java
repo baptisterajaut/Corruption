@@ -64,7 +64,7 @@ public abstract class Card {
 
     protected abstract void onArriveEffect() throws Defaite;
 
-    public void onTime() {
+    public void onTime() throws Defaite {
         if (!disable) {
             partie.editAppreciationMod(-appreciaitionMalus);
 
@@ -72,7 +72,7 @@ public abstract class Card {
         onTimeEffect();
     }
 
-    protected abstract void onTimeEffect();
+    protected abstract void onTimeEffect() throws Defaite;
 
     public void disable() {
         this.disable = true;

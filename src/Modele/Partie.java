@@ -27,14 +27,14 @@ public class Partie {
     private ListeCarte paquet;
     private ListeCarte cardsToAdd;
 
-    public Partie(int tours) {
+    public Partie(int tours,String deck) {
         activeCards = new ListeCarte();
         this.influence = 3;
         this.appreciation = 20;
         this.credits = 6;
         this.tours = tours;
         this.cardsToAdd = new ListeCarte();
-        paquet = PaquetFactory.createDeckFromFile(this,"baptiste.deck");
+        paquet = PaquetFactory.createDeckFromFile(this,deck);
         paquet.melanger();
     }
 
@@ -52,7 +52,7 @@ public class Partie {
                 }
                 int infl = influence + influenceMod;
 
-                checkDefaite();
+
 
                 StringBuilder sb = new StringBuilder();
                 sb.append("\n-------Nouveau Tour--------\n");
@@ -212,7 +212,6 @@ public class Partie {
                         activeCards.getListe().add(c);
                 }
                 cardsToAdd = new ListeCarte();
-                checkDefaite();
             }
             System.out.println("Vous avez survecu");
         } catch (Defaite d) {
@@ -237,33 +236,40 @@ public class Partie {
         }
     }
 
-    public void editCreditsMod(int creditsMod) {
+    public void editCreditsMod(int creditsMod) throws Defaite {
+        checkDefaite();
         this.creditsMod += creditsMod;
     }
 
 
     public void editInfluenceMod(int influenceMod) {
+
         this.influenceMod += influenceMod;
     }
 
-    public void editAppreciationMod(int appreciationMod) {
+    public void editAppreciationMod(int appreciationMod) throws Defaite {
+
+
         this.appreciationMod += appreciationMod;
+        checkDefaite();
     }
 
     public void disableBatiments() {
         this.batimentsEnabled = false;
     }
 
-    public void editPermanentInfluence(int influence) {
+    public void editPermanentInfluence(int influence)  {
         this.influence += influence;
     }
 
-    public void editPermanentCredits(int credits) {
+    public void editPermanentCredits(int credits) throws Defaite {
         this.credits += credits;
+        checkDefaite();
     }
 
-    public void editPermanentAppreciation(int appreciation) {
+    public void editPermanentAppreciation(int appreciation) throws Defaite {
         this.appreciation += appreciation;
+        checkDefaite();
     }
 
     public ListeCarte getActiveCards() {
@@ -291,7 +297,12 @@ public class Partie {
     }
 
     public static void main(String[] args) {
-        new Partie(10).run();
+        String deck;
+        if(args.length==0)
+            deck="basic.deck";
+        else
+            deck=args[0];
+        new Partie(10,deck).run();
     }
 
 }

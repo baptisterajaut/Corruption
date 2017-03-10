@@ -1,6 +1,7 @@
 package Modele.Cartes.Corruption;
 
 import Modele.Cartes.Abstacts.Event;
+import Modele.Defaite;
 import Modele.Partie;
 
 /**
@@ -23,7 +24,7 @@ public class SaisieAdministrative extends Event {
     }
 
     @Override
-    protected void onArriveEffect() {
+    protected void onArriveEffect() throws Defaite {
         partie.editPermanentInfluence(-1);
     }
 

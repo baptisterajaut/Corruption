@@ -33,7 +33,7 @@ public class StripClub extends Building {
     }
 
     @Override
-    protected void onTimeEffect() {
+    protected void onTimeEffect() throws Defaite {
         partie.editCreditsMod(2);
 
     }

@@ -80,7 +80,8 @@ public class PaquetFactory {
             }
 
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Erreur du deck "+file);
+            return testDeck(p);
         }
         return ret;
     }
