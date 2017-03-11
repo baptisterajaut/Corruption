@@ -128,5 +128,9 @@ public abstract class Card {
         }
         return sb.toString();
     }
+
+    protected void setTour(int tour) {
+        this.tour = tour;
+    }
 }
 

@@ -64,10 +64,11 @@ public class Partie {
                     for (Card c : activeCards.getListe()) {
                         sb.append(c.describe(true)).append("\n");
                     }
-                    sb.append("-----------\n");
+
 
 
                 }
+                sb.append("-----------\n");
                 System.out.print(sb.toString());
                 ListeCarte choisies = new ListeCarte();
                 ListeCarte piochees = new ListeCarte();
