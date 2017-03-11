@@ -225,8 +225,8 @@ public class Partie {
     }
 
     private void checkDefaite() throws Defaite {
-        if (appreciation - appreciationMod <= 0) {
-            System.out.println("Le peuple se rebelle ! : Vous avez " + getTotalAppreciation()+" appreciation");
+        if (appreciation <= 0) {
+            System.out.println("Le peuple se rebelle ! : Vous avez " + appreciation +" appreciation");
             throw new Defaite();
             }
 
@@ -273,6 +273,10 @@ public class Partie {
         checkDefaite();
     }
 
+    public int getAppreciation() {
+        return appreciation;
+    }
+
     public ListeCarte getActiveCards() {
         return activeCards;
     }
@@ -291,10 +295,6 @@ public class Partie {
 
     public int getTotalInfluence() {
         return influence + influenceMod;
-    }
-
-    public int getTotalAppreciation() {
-        return appreciation - appreciationMod;
     }
 
     public static void main(String[] args) {

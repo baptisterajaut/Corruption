@@ -27,7 +27,7 @@ public class BavurePoliciere extends Event {
     protected void onArriveEffect() throws Defaite {
         partie.editPermanentAppreciation(-2);
         System.out.println("Un policier tire sur la foule par erreur!");
-        if(partie.getTotalAppreciation()<6){
+        if(partie.getAppreciation()<6){
             System.out.println("Cela declenche une emeute !");
             for(Card c : partie.getPaquet().clone().getListe()){
                 if(c instanceof Event){
