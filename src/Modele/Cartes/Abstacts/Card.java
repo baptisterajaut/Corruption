@@ -122,7 +122,7 @@ public abstract class Card {
             if (description.length() > 0)
                 sb.append(" : ").append(description);
             if (appreciaitionMalus > 0)
-                sb.append(", - ").append(appreciaitionMalus).append(" influence");
+                sb.append(", - ").append(appreciaitionMalus).append(" appreciation");
             if(isDisable())
                 sb.append("( desactive) ");
         }

@@ -44,7 +44,7 @@ public class Partie {
             System.out.println("Bienvenue... vous avez " + tours + " tours a tenir... bonne chance...");
             for (int ktours = 0; ktours < tours; ktours++) {
                 appreciationMod = 3;
-                creditsMod = 2;
+                creditsMod = 3;
                 influenceMod = 0;
                 batimentsEnabled = true;
                 for (Card c : activeCards.getListe()) {
@@ -55,7 +55,7 @@ public class Partie {
 
 
                 StringBuilder sb = new StringBuilder();
-                sb.append("\n-------Nouveau Tour--------\n");
+                sb.append("\n-------Nouveau Tour ( Tour ").append(ktours+1).append(" )--------\n");
                 sb.append("Vous avez ").append(appreciation).append(" points d'appreciation ( ").append(appreciationMod).append(" par tour )\n");
                 sb.append("Vous avez ").append(infl).append(" points d'influence (").append(influence).append(" : ").append(influenceMod).append(")\n");
                 sb.append("Vous avez ").append(credits).append(" credits (").append(creditsMod).append(" par tour)\n");
@@ -297,6 +297,8 @@ public class Partie {
     }
 
     public static void main(String[] args) {
+        System.out.println("WoopyCat Corruption prototpye !");
+        System.out.println("Concept par Nicolas Valentin et code par Baptiste Rajaut");
         String deck;
         if(args.length==0)
             deck="basic.deck";
